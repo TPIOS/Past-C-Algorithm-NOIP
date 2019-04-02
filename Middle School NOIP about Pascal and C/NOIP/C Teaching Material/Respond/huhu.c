@@ -10,4 +10,5 @@ main()
        if(h+j>=a[i]) n++;
        printf("n=%d",n);
        getch()
+	}
 }
