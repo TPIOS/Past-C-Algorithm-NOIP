@@ -1,0 +1,9 @@
+function max(a,b:longint):longint;
+begin
+   if a>b then exit(a) else exit(b);
+end;
+ 
+function min(a,b:longint):longint;
+begin
+   if a>b then exit(b) else exit(a);
+end;

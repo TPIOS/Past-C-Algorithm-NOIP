@@ -1,0 +1,45 @@
+Program yinshu;
+Uses crt;
+Var
+  a,i,s,k:longint;
+  z:array[1..1000] of longint;
+Procedure pan(x:longint);
+Var j:longint;
+Begin
+  for j:=2 to trunc(sqrt(x)) do if x mod j=0 then exit;
+  if x<>1 then begin inc(k); z[k]:=x; end;
+End;
+Begin
+  clrscr;
+  k:=0;
+  s:=1;
+  fillchar(z,sizeof(z),0);
+  Writeln('This program will help you to know the factors of a number.');
+  Writeln('Attention!This number must belong to positive integer.(<=2147483647)(Because the program is a beta.)');
+  Writeln('If the number that you input is too big,you have to wait!Waiting time is not decided by not only the number,but also the computer.');
+  Writeln('If there are some words that in the introduction you do not know,please look up the dictionary.');
+  While s<>0 do
+  begin
+    Write('Please Input A Number:');
+    readln(a);
+    Writeln;
+    Write('The factors of the number are:');
+    for i:=1 to a do
+      if (a mod i)=0 then
+      begin
+        write(i,' ');
+        pan(i);
+      end;
+    Writeln;
+    Writeln('Do you want to know the prime factors of the number?If yes,press 1,else press 0.');
+    readln(s);
+    if s=1 then for i:=1 to k do write(z[i],' ');
+    Writeln;
+    Writeln('Do you want to try again?If yes,press 1,else press 0');
+    readln(s);
+    if s=1 then clrscr;
+  end;
+  Writeln;
+  Write('Thanks for using.');
+  readln;
+End.

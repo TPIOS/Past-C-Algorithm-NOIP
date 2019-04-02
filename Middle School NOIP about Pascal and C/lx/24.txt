@@ -1,0 +1,72 @@
+program E1_3; {point24}
+type arr=array [1..4] of integer;
+var i,result,n,len:integer;
+    d:arr;
+    r:array [1..3,1..4] of integer;
+    infile,outfile:text;
+procedure print;
+var i,j:integer;
+begin
+  assign(outfile,'point24.out');
+  rewrite(outfile);
+  for i:=1 to 3 do
+  begin
+      for j:=1 to 3 do
+        if j<>2 then write(outfile,r[i,j])
+          else case r[i,j] of
+                  1:write(outfile,'+');
+                  2:write(outfile,'-');
+                  3:write(outfile,'*');
+                  4:write(outfile,'/')
+                end;
+       writeln(outfile,'=',r[i,4])
+    end;
+  close(outfile);
+end;
+procedure try(k:integer;d:arr);
+var a,b,i,j,l,t:integer;
+    e:arr;
+begin
+  if k=1 then if d[1]=24 then begin print;halt end else
+     else
+     begin
+       for i:=1 to k-1 do
+        for j:=i+1 to k do
+         begin
+           a:=d[i]; b:=d[j];
+           if a<b then begin t:=a;a:=b;b:=t end;
+           t:=0;
+           for l:=1 to k do if (l<>i) and (l<>j) then begin t:=t+1;e[t]:=d[l] end;
+           r[5-k,1]:=a;
+           r[5-k,3]:=b;
+           r[5-k,4]:=-1;
+           for l:=1 to 4 do
+            begin
+             case l of
+               1:r[5-k,4]:=a+b;
+               2:r[5-k,4]:=a-b;
+               3:r[5-k,4]:=a*b;
+               4:if b<>0  then if a mod b=0 then r[5-k,4]:=a div b
+             end;
+            r[5-k,2]:=l;
+            if r[5-k,4]<>-1 then
+                 begin
+                  e[t+1]:=r[5-k,4];
+                  try(k-1,e)
+                 end
+           end
+        end
+     end;
+end;
+begin
+  assign(infile,'point24.in');
+  reset(infile);
+  for i:=1 to 4 do read(infile,d[i]);
+  close(infile);
+  try(4,d);
+  assign(outfile,'point24.out');
+  rewrite(outfile);
+  writeln(outfile,'No answer!');
+  close(outfile);
+end.
+

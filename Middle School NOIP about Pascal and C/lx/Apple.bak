@@ -1,0 +1,9 @@
+Program jishi;
+Var
+  a:array[1..10] of integer;
+  i:integer;
+Begin
+  fillchar(a,sizeof(a),10);
+  for i:=1 to 10 do writeln(a);
+  readln;
+End.

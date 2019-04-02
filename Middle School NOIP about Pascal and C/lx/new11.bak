@@ -1,0 +1,57 @@
+Program Joseph;
+Type
+  pt=^hsy;
+  hsy=record
+    data:integer;
+    next:pt;
+end;
+Var
+  p:pt;
+  m,n:integer;
+Procedure crea;
+var
+  s,w:pt;
+  i:integer;
+begin
+  new(s);
+  p:=s;
+  s^.data:=1;
+  w:=s;
+  for i:=2 to n do
+    begin
+      new(s);
+      s^.data:=i;
+      w^.next:=s;
+      w:=s;
+    end;
+    w^.next:=p;
+end;
+Procedure main;
+Var
+  a,q:pt;
+  i,t,o,k,z:integer;
+begin
+  a:=p; t:=0; q:=a;
+  o:=n;
+  repeat
+    a:=q^.next;
+    inc(t);
+    if t=m then
+    begin
+      z:=m mod o;
+      if z=0 then writeln(o) else writeln(z);
+      m:=q^.data;
+      dec(o);
+      q^.next:=a^.next;dispose(a);t:=0;
+    end
+    else q:=a;
+  until a=a^.next;
+  p:=a;
+end;
+Begin
+  write('n,m=');
+  readln(n,m);
+  crea;
+  main;
+  readln;
+End.

@@ -1,0 +1,19 @@
+Program factor;
+Const
+  infile='factor.in';
+  outfile='factor.out';
+Var
+  a,b,k,n,m:longint;
+  i:longint;
+  c:array[1..]
+Begin
+  Assign(input,infile);
+  Assign(output,outfile);
+  reset(input);
+  rewrite(output);
+  readln(a,b,k,n,m);
+  for i:=1 to n do
+    for j:=1 to i do
+  close(input);
+  close(output);
+End.

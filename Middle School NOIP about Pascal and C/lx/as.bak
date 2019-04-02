@@ -1,0 +1,6 @@
+Program trial;
+Var
+Begin
+  writeln('Fuck!');
+  readln;
+End.
